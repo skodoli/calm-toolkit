@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calm Toolkit — evidence-based tools for anxiety and low mood</title>
+<meta name="description" content="Free breathing timers, grounding and CBT tools, plus an evidence summary of treatments for anxiety and depression, with links to NHS, NICE, Mayo Clinic and NIMH sources.">
+<style>
+:root{
+  --bg:#f6f4ef; --paper:#fffdf8; --ink:#1f2a2e; --muted:#5b6a6f; --line:#dcd7cc;
+  --teal:#2f6f6a; --teal-soft:#d9ebe7; --sage:#8fae9b; --sand:#efe6d4; --coral:#c4573a; --coral-soft:#f7e1d9;
+  --amber:#b7862b; --amber-soft:#f5ead2;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#141a1b;--paper:#1b2324;--ink:#e7ece9;--muted:#9fb0ab;--line:#2f3a3b;--teal:#7cc2b8;--teal-soft:#1f3633;--sage:#6f9a84;--sand:#2a2620;--coral:#f08a6c;--coral-soft:#3a231c;--amber:#e0b35a;--amber-soft:#332a18}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
+a{color:var(--teal)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3vw,2.1rem);margin:0 0 .4rem}
+h3{font-size:1.2rem;margin:1.4rem 0 .4rem}
+p{margin:.5rem 0 .9rem}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.crisis{background:#a83f27;color:#fff;font-size:.92rem}
+.crisis .wrap{padding:8px 20px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.crisis a{color:#fff;font-weight:600}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:1.15rem;font-weight:700;text-decoration:none;color:var(--ink)}
+nav.sections{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
+nav.sections a{white-space:nowrap;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:.9rem}
+nav.sections a:hover{background:var(--teal-soft);color:var(--ink)}
+.sos{background:var(--teal);color:#fff;border:0;border-radius:999px;padding:8px 14px;font-weight:600;cursor:pointer;font-size:.9rem}
+.hero{padding:48px 0 18px}
+.hero h1{font-size:clamp(2rem,5vw,3.1rem);margin:0 0 .6rem;max-width:20ch}
+.lede{font-size:1.1rem;color:var(--muted);max-width:62ch}
+.note{background:var(--amber-soft);border-left:4px solid var(--amber);padding:12px 16px;border-radius:8px;font-size:.93rem;max-width:75ch}
+section{padding:42px 0;border-top:1px solid var(--line)}
+.kicker{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:6px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.diagrid{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.card h3{margin-top:0}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:999px;margin-right:4px;vertical-align:middle}
+.t-strong{background:var(--teal-soft);color:var(--teal)}
+.t-mod{background:var(--amber-soft);color:var(--amber)}
+.t-weak{background:var(--sand);color:var(--muted)}
+.t-warn{background:var(--coral-soft);color:var(--coral)}
+small,.small{font-size:.85rem;color:var(--muted)}
+ul.tight{padding-left:1.2rem;margin:.3rem 0}
+ul.tight li{margin:.2rem 0}
+
+/* Breathing tool */
+.breath{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);gap:24px;align-items:center}
+@media (max-width:760px){.breath{grid-template-columns:1fr}}
+.stage{position:relative;aspect-ratio:1;max-width:380px;width:100%;margin:0 auto}
+.stage svg{width:100%;height:100%;display:block}
+.phase{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center}
+.phase .label{font-family:var(--serif);font-size:1.5rem;font-weight:600}
+.phase .count{font-size:2.6rem;font-weight:300;font-variant-numeric:tabular-nums;line-height:1}
+.phase .sub{font-size:.85rem;color:var(--muted);margin-top:6px}
+.pattern-pick{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.pill{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit;font-size:.92rem}
+.pill[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+.btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 22px;border:0;cursor:pointer}
+.btn-start{background:var(--teal);color:#fff}
+.btn-stop{background:var(--coral);color:#fff}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+select{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.opts{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
+.stats{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.howto{font-size:.95rem}
+
+/* Grounding */
+.ground{display:flex;gap:18px;align-items:center}
+.ground .num{font-family:var(--serif);font-size:4rem;line-height:1;color:var(--teal);min-width:1.2em;text-align:center}
+.dots{display:flex;gap:6px;margin-top:10px}
+.dots span{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots span.on{background:var(--teal)}
+
+/* Diagrams */
+figure{margin:0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:.88rem;color:var(--muted);margin-top:8px}
+.diag text{font-family:var(--sans);fill:var(--ink);font-size:14px}
+.diag text[font-size="12"]{font-size:11.5px}
+.diag .box{fill:var(--paper);stroke:var(--teal);stroke-width:2}
+.diag .box2{fill:var(--teal-soft);stroke:var(--teal);stroke-width:2}
+.diag .boxw{fill:var(--coral-soft);stroke:var(--coral);stroke-width:2}
+.diag .arr{stroke:var(--muted);stroke-width:2;fill:none}
+.diag .arrg{stroke:var(--teal);stroke-width:2.5;fill:none}
+
+/* Thought record */
+.tr label{display:block;font-weight:600;margin:12px 0 4px;font-size:.93rem}
+.tr textarea{width:100%;min-height:62px;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.tr input[type=range]{width:100%}
+.tr .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.tr .row{grid-template-columns:1fr}}
+
+/* Tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--sand);font-weight:700;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+@media (max-width:640px){
+  .stack thead{display:none}
+  .stack table,.stack tbody,.stack tr,.stack td{display:block;width:100%}
+  .stack tr{border-bottom:1px solid var(--line);padding:6px 0}
+  .stack td{border:0;padding:6px 14px}
+  .stack td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+}
+
+/* Ladder */
+.ladder{display:grid;gap:10px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.step .n{width:42px;height:42px;border-radius:50%;background:var(--teal-soft);color:var(--teal);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.step h4{margin:0 0 4px;font-size:1rem}
+
+.help td:first-child{font-weight:600;white-space:nowrap}
+ol.refs{font-size:.88rem;padding-left:1.4rem}
+ol.refs li{margin:.35rem 0}
+footer{padding:36px 0 60px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+details{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:10px 0}
+details summary{cursor:pointer;font-weight:600}
+@media print{.crisis,header.top,.controls,.pattern-pick,.opts,#calm .stage,.sos{display:none!important}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="crisis" role="region" aria-label="Urgent help">
+  <div class="wrap">
+    <strong>In danger now? Call 999 (UK) or 911 (US).</strong>
+    <span>Samaritans, free 24/7: <a href="tel:116123">116 123</a></span>
+    <span>Text <a href="sms:85258?body=SHOUT">SHOUT to 85258</a></span>
+    <span>Scotland: <a href="tel:111">NHS 24 on 111</a></span>
+    <span>US: call or text <a href="tel:988">988</a></span>
+    <a href="#help">More help &darr;</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Calm Toolkit</a>
+    <nav class="sections" aria-label="Sections">
+      <a href="#calm">Calm now</a>
+      <a href="#ground">Grounding</a>
+      <a href="#cbt">CBT tools</a>
+      <a href="#ladder">Treatment steps</a>
+      <a href="#lifestyle">Daily habits</a>
+      <a href="#new">Newer treatments</a>
+      <a href="#supplements">Supplements</a>
+      <a href="#medicines">Medicines</a>
+      <a href="#help">Get help</a>
+      <a href="#sources">Sources</a>
+    </nav>
+    <button class="sos" id="sosBtn" type="button">I'm panicking now</button>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap hero">
+  <div class="kicker">Anxiety &middot; panic &middot; low mood &middot; depression</div>
+  <h1>Tools for hard moments, and a map of what helps</h1>
+  <p class="lede">Quick calming exercises you can use right now, the core diagrams from cognitive behavioural therapy (CBT), and a plain summary of the evidence on therapies, medicines, supplements and newer brain-based treatments, drawn from NICE, the NHS, Mayo Clinic, NIMH and recent trials.</p>
+  <p class="note"><strong>Please read:</strong> this site gives general information, not medical advice, and it does not replace a GP, psychologist or psychiatrist. Do not start, stop or combine medicines or supplements without checking with a doctor or pharmacist. If you are thinking about ending your life or are unsafe, use the numbers in the red bar above now.</p>
+</div>
+
+<!-- ================= CALM NOW ================= -->
+<section id="calm">
+<div class="wrap">
+  <div class="kicker">Calm now</div>
+  <h2>Breathing timer</h2>
+  <p>Pick a pattern, press Start and follow the shape. Breathe gently; you should not feel dizzy. If you do, stop and breathe normally.</p>
+
+  <div class="pattern-pick" role="group" aria-label="Breathing pattern">
+    <button class="pill" data-pattern="sigh" aria-pressed="true">Cyclic sigh (fastest calm)</button>
+    <button class="pill" data-pattern="box" aria-pressed="false">Box breathing 4-4-4-4</button>
+    <button class="pill" data-pattern="slow" aria-pressed="false">Slow breathing 4-6</button>
+  </div>
+
+  <div class="breath">
+    <div class="stage" aria-hidden="true">
+      <svg viewBox="0 0 300 300" id="breathSvg">
+        <circle cx="150" cy="150" r="128" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <circle id="bCircle" cx="150" cy="150" r="70" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="3"/>
+        <rect id="bSquare" x="55" y="55" width="190" height="190" rx="6" fill="var(--teal-soft)" stroke="var(--teal)" stroke-width="3" style="display:none"/>
+        <circle id="bDot" cx="55" cy="245" r="10" fill="var(--teal)" style="display:none"/>
+      </svg>
+      <div class="phase" aria-live="polite">
+        <div class="label" id="bLabel">Ready</div>
+        <div class="count" id="bCount">&nbsp;</div>
+        <div class="sub" id="bSub">Press Start</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="howto" id="bHow"></div>
+      <div class="controls">
+        <button class="btn btn-start" id="bStart" type="button">Start</button>
+        <button class="btn btn-stop" id="bStop" type="button" disabled>Stop</button>
+        <label class="small">Length
+          <select id="bLen">
+            <option value="60">1 minute</option>
+            <option value="180">3 minutes</option>
+            <option value="300" selected>5 minutes</option>
+            <option value="600">10 minutes</option>
+            <option value="0">Until I stop</option>
+          </select>
+        </label>
+      </div>
+      <div class="opts">
+        <label><input type="checkbox" id="bSound"> Soft tones</label>
+        <label><input type="checkbox" id="bVibe"> Vibrate (phones)</label>
+      </div>
+      <p class="stats" id="bStats">&nbsp;</p>
+    </div>
+  </div>
+
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card">
+      <h3>Cyclic sigh</h3>
+      <p class="small"><span class="tag t-mod">Promising</span> One randomised trial</p>
+      <p>Two inhales through the nose (a full breath, then a short top-up), then a long, slow exhale through the mouth. In a Stanford trial of 111 healthy adults doing 5 minutes a day for a month, this exhale-focused pattern improved mood and lowered resting breathing rate more than mindfulness meditation. It has not yet been tested in people with diagnosed anxiety disorders.</p>
+    </div>
+    <div class="card">
+      <h3>Box breathing</h3>
+      <p class="small"><span class="tag t-mod">Promising</span> Same trial, widely used</p>
+      <p>In 4, hold 4, out 4, hold 4. The even rhythm gives the mind something to count, which helps when thoughts are racing. It was one of the arms in the same Stanford trial and also improved mood, slightly less than cyclic sighing.</p>
+    </div>
+    <div class="card">
+      <h3>Slow breathing 4-6</h3>
+      <p class="small"><span class="tag t-strong">Good evidence</span> Meta-analysis</p>
+      <p>In 4, out 6, which is about six breaths a minute. This is close to the "resonance" rate used in heart-rate-variability biofeedback, which a meta-analysis found reduces self-reported stress and anxiety. A longer out-breath leans on the calming (parasympathetic) side of the nervous system.</p>
+    </div>
+  </div>
+
+  <h3>Panic first aid</h3>
+  <div class="grid g2">
+    <div class="card">
+      <p><strong>What is happening:</strong> a surge of adrenaline is preparing your body to run or fight. The racing heart, tight chest, tingling and dizziness are unpleasant but are the body's alarm system, not a sign of danger. The NHS notes that most panic attacks last between 5 and 20 minutes.</p>
+      <p><strong>What helps:</strong> stay where you are if it is safe, slow the out-breath, name it ("this is panic, it will pass"), and let the wave rise and fall rather than fighting it.</p>
+    </div>
+    <div class="card">
+      <p><strong>What keeps panic going:</strong> leaving the situation, sitting down "in case I faint", carrying water or pills "just in case". These safety behaviours bring short-term relief but teach the brain that the danger was real. CBT for panic gradually drops them.</p>
+      <p><strong>See a doctor</strong> if chest pain, breathlessness or fainting are new, or if you are not sure it is panic. Call 999 if you think it could be a heart attack.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= GROUNDING ================= -->
+<section id="ground">
+<div class="wrap">
+  <div class="kicker">Calm now</div>
+  <h2>Grounding and quick reset</h2>
+  <div class="grid g2">
+    <div class="card" id="groundCard">
+      <h3>5-4-3-2-1 senses</h3>
+      <p class="small">Pulls attention out of worry and into the room. Go slowly.</p>
+      <div class="ground">
+        <div class="num" id="gNum">5</div>
+        <div>
+          <div id="gText" style="font-size:1.1rem">things you can <strong>see</strong>. Name them quietly: colours, shapes, light.</div>
+          <div class="dots" id="gDots"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-ghost" id="gBack" type="button">Back</button>
+        <button class="btn btn-start" id="gNext" type="button">Next</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Two-minute muscle release</h3>
+      <p class="small"><span class="tag t-strong">Good evidence</span> NICE lists applied relaxation as a treatment for generalised anxiety</p>
+      <ol class="tight">
+        <li>Clench both fists for 5 seconds, then let go for 10. Notice the difference.</li>
+        <li>Shrug shoulders to ears, hold 5, drop and soften.</li>
+        <li>Scrunch face, hold 5, release your jaw and forehead.</li>
+        <li>Press feet into the floor, tense legs, hold 5, release.</li>
+        <li>Finish with three slow out-breaths.</li>
+      </ol>
+      <p class="small">Full applied relaxation is taught over several weeks by a therapist; this is a short version.</p>
+    </div>
+    <div class="card">
+      <h3>Worry time</h3>
+      <p>Set a 15-minute slot each day. When a worry turns up outside it, jot it down and tell yourself "later". At worry time, use the worry tree below. Many people find most worries have faded by then.</p>
+    </div>
+    <div class="card">
+      <h3>The next small step</h3>
+      <p>When mood is low, motivation usually follows action rather than coming first. Pick one task that takes under five minutes: open the curtains, shower, step outside, message one person. Do it, then notice how you feel. This is the core of behavioural activation.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= CBT ================= -->
+<section id="cbt">
+<div class="wrap">
+  <div class="kicker">Understand the cycle</div>
+  <h2>CBT diagrams</h2>
+  <p>CBT is based on the idea that thoughts, feelings, body sensations and actions feed each other. You cannot always change the situation, but you can step into the loop at the thought or the behaviour.</p>
+
+  <div class="grid diagrid">
+    <figure class="card diag">
+      <svg viewBox="0 0 440 360" role="img" aria-labelledby="d1t">
+        <title id="d1t">Five areas model: situation in the centre, linked to thoughts, emotions, body sensations and behaviour, all connected in a loop</title>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+        <rect class="box2" x="150" y="148" width="140" height="64" rx="12"/>
+        <text x="220" y="175" text-anchor="middle" font-weight="700">Situation</text>
+        <text x="220" y="195" text-anchor="middle" font-size="12">e.g. a work email</text>
+        <rect class="box" x="150" y="20" width="140" height="62" rx="12"/>
+        <text x="220" y="46" text-anchor="middle" font-weight="700">Thoughts</text>
+        <text x="220" y="66" text-anchor="middle" font-size="12">"I've messed up"</text>
+        <rect class="box" x="300" y="148" width="130" height="64" rx="12"/>
+        <text x="365" y="174" text-anchor="middle" font-weight="700">Emotions</text>
+        <text x="365" y="194" text-anchor="middle" font-size="12">anxious, ashamed</text>
+        <rect class="box" x="150" y="278" width="140" height="62" rx="12"/>
+        <text x="220" y="304" text-anchor="middle" font-weight="700">Body</text>
+        <text x="220" y="324" text-anchor="middle" font-size="12">tight chest, nausea</text>
+        <rect class="box" x="10" y="148" width="130" height="64" rx="12"/>
+        <text x="75" y="174" text-anchor="middle" font-weight="700">Behaviour</text>
+        <text x="75" y="194" text-anchor="middle" font-size="12">avoid, check, delay</text>
+        <path class="arr" d="M290 70 Q360 90 365 146" marker-end="url(#ah)"/>
+        <path class="arr" d="M365 214 Q360 280 292 300" marker-end="url(#ah)"/>
+        <path class="arr" d="M148 300 Q80 280 75 214" marker-end="url(#ah)"/>
+        <path class="arr" d="M75 146 Q80 90 148 70" marker-end="url(#ah)"/>
+        <path class="arr" d="M220 146 L220 86" marker-end="url(#ah)" stroke-dasharray="4 4"/>
+      </svg>
+      <figcaption><strong>The five areas model.</strong> Each part drives the next. Changing one link (testing the thought, or doing the avoided task) weakens the whole loop.</figcaption>
+    </figure>
+
+    <figure class="card diag">
+      <svg viewBox="0 0 440 360" role="img" aria-labelledby="d2t">
+        <title id="d2t">The panic cycle: trigger, perceived threat, anxiety, body sensations, catastrophic misinterpretation, which feeds back into perceived threat</title>
+        <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--coral)"/></marker></defs>
+        <rect class="box2" x="150" y="10" width="140" height="48" rx="12"/>
+        <text x="220" y="39" text-anchor="middle" font-weight="700">Trigger</text>
+        <rect class="box" x="150" y="92" width="140" height="48" rx="12"/>
+        <text x="220" y="121" text-anchor="middle" font-weight="700">Sense of threat</text>
+        <rect class="box" x="290" y="178" width="140" height="48" rx="12"/>
+        <text x="360" y="207" text-anchor="middle" font-weight="700">Anxiety rises</text>
+        <rect class="box" x="150" y="270" width="140" height="56" rx="12"/>
+        <text x="220" y="294" text-anchor="middle" font-weight="700">Body sensations</text>
+        <text x="220" y="313" text-anchor="middle" font-size="12">heart races, dizzy</text>
+        <rect class="boxw" x="4" y="172" width="152" height="60" rx="12"/>
+        <text x="80" y="197" text-anchor="middle" font-weight="700">Misreading</text>
+        <text x="80" y="216" text-anchor="middle" font-size="12">"I'm going to collapse"</text>
+        <path class="arr" d="M220 58 L220 90" marker-end="url(#ah)"/>
+        <path class="arr" d="M292 125 Q350 140 358 176" marker-end="url(#ah)" stroke="var(--coral)"/>
+        <path class="arr" d="M358 228 Q350 280 292 295" marker-end="url(#ah)" stroke="var(--coral)"/>
+        <path class="arr" d="M148 295 Q90 280 82 234" marker-end="url(#ah)" stroke="var(--coral)"/>
+        <path class="arr" d="M82 170 Q90 130 148 120" marker-end="url(#ah)" stroke="var(--coral)"/>
+      </svg>
+      <figcaption><strong>The panic cycle.</strong> Normal body sensations are read as a catastrophe, which raises the threat and the sensations further. CBT targets the misreading, often by bringing on the sensations safely (for example, spinning on a chair) and learning nothing bad happens.</figcaption>
+    </figure>
+
+    <figure class="card diag">
+      <svg viewBox="0 0 440 340" role="img" aria-labelledby="d3t">
+        <title id="d3t">Depression withdrawal cycle and behavioural activation: low mood leads to doing less, fewer rewards and more low mood; activity breaks the loop</title>
+        <rect class="boxw" x="150" y="14" width="140" height="48" rx="12"/>
+        <text x="220" y="43" text-anchor="middle" font-weight="700">Low mood</text>
+        <rect class="box" x="290" y="132" width="140" height="56" rx="12"/>
+        <text x="360" y="156" text-anchor="middle" font-weight="700">Do less</text>
+        <text x="360" y="175" text-anchor="middle" font-size="12">stay in, cancel plans</text>
+        <rect class="box" x="150" y="250" width="140" height="56" rx="12"/>
+        <text x="220" y="274" text-anchor="middle" font-weight="700">Fewer rewards</text>
+        <text x="220" y="293" text-anchor="middle" font-size="12">less contact, less done</text>
+        <rect class="box" x="10" y="132" width="140" height="56" rx="12"/>
+        <text x="80" y="156" text-anchor="middle" font-weight="700">More rumination</text>
+        <text x="80" y="175" text-anchor="middle" font-size="12">"what's the point"</text>
+        <path class="arr" d="M292 40 Q350 60 358 130" marker-end="url(#ah)"/>
+        <path class="arr" d="M358 190 Q350 260 292 276" marker-end="url(#ah)"/>
+        <path class="arr" d="M148 276 Q90 260 82 190" marker-end="url(#ah)"/>
+        <path class="arr" d="M82 130 Q90 60 148 40" marker-end="url(#ah)"/>
+        <rect x="160" y="130" width="120" height="60" rx="30" fill="var(--teal)"/>
+        <text x="220" y="156" text-anchor="middle" font-weight="700" style="fill:#fff">Planned</text>
+        <text x="220" y="174" text-anchor="middle" font-weight="700" style="fill:#fff">activity</text>
+        <path class="arrg" d="M282 160 L300 160" />
+        <path class="arrg" d="M220 192 L220 246"/>
+      </svg>
+      <figcaption><strong>Behavioural activation.</strong> Depression pulls you away from what used to give pleasure or a sense of achievement. Scheduling small activities, whatever your mood, puts rewards back into the week. NICE lists it among first-line options for depression.</figcaption>
+    </figure>
+
+    <figure class="card diag">
+      <svg viewBox="0 0 440 370" role="img" aria-labelledby="d4t">
+        <title id="d4t">The worry tree: notice the worry, ask if it is about something you can act on; if not, let it go and refocus; if yes, act now or plan when</title>
+        <rect class="box2" x="130" y="8" width="180" height="44" rx="12"/>
+        <text x="220" y="35" text-anchor="middle" font-weight="700">Notice the worry</text>
+        <rect class="box" x="100" y="80" width="240" height="56" rx="12"/>
+        <text x="220" y="103" text-anchor="middle" font-weight="700">Is it a real problem</text>
+        <text x="220" y="122" text-anchor="middle" font-weight="700">I can do something about?</text>
+        <rect class="box" x="10" y="176" width="180" height="56" rx="12"/>
+        <text x="100" y="200" text-anchor="middle" font-weight="700">No / "what if…"</text>
+        <text x="100" y="219" text-anchor="middle" font-size="12">hypothetical worry</text>
+        <rect class="box" x="250" y="176" width="180" height="56" rx="12"/>
+        <text x="340" y="200" text-anchor="middle" font-weight="700">Yes</text>
+        <text x="340" y="219" text-anchor="middle" font-size="12">practical problem</text>
+        <rect class="box2" x="10" y="282" width="180" height="70" rx="12"/>
+        <text x="100" y="308" text-anchor="middle" font-weight="700">Let it go</text>
+        <text x="100" y="328" text-anchor="middle" font-size="12">refocus on what you're</text>
+        <text x="100" y="344" text-anchor="middle" font-size="12">doing right now</text>
+        <rect class="box2" x="250" y="282" width="180" height="70" rx="12"/>
+        <text x="340" y="308" text-anchor="middle" font-weight="700">Act or plan</text>
+        <text x="340" y="328" text-anchor="middle" font-size="12">do it now, or write</text>
+        <text x="340" y="344" text-anchor="middle" font-size="12">what and when</text>
+        <path class="arr" d="M220 52 L220 78" marker-end="url(#ah)"/>
+        <path class="arr" d="M160 138 L120 174" marker-end="url(#ah)"/>
+        <path class="arr" d="M280 138 L320 174" marker-end="url(#ah)"/>
+        <path class="arr" d="M100 234 L100 280" marker-end="url(#ah)"/>
+        <path class="arr" d="M340 234 L340 280" marker-end="url(#ah)"/>
+      </svg>
+      <figcaption><strong>The worry tree.</strong> Used in CBT for generalised anxiety. It separates problems you can solve from "what if" worries that cannot be solved by thinking harder.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Thinking traps to watch for</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Trap</th><th>Sounds like</th><th>Question to ask</th></tr></thead>
+      <tbody>
+        <tr><td>Catastrophising</td><td>"This will be a disaster."</td><td>What is the most likely outcome, not the worst?</td></tr>
+        <tr><td>Mind reading</td><td>"They think I'm useless."</td><td>What is my evidence? Could there be another reason?</td></tr>
+        <tr><td>All-or-nothing</td><td>"If it isn't perfect, it's a failure."</td><td>Is there a middle ground?</td></tr>
+        <tr><td>Overgeneralising</td><td>"This always happens to me."</td><td>Always? Can I think of a time it didn't?</td></tr>
+        <tr><td>Discounting the positive</td><td>"That only went well by luck."</td><td>Would I say this to a friend?</td></tr>
+        <tr><td>Emotional reasoning</td><td>"I feel anxious, so something must be wrong."</td><td>Is the feeling a fact, or a feeling?</td></tr>
+        <tr><td>"Should" statements</td><td>"I should be coping better."</td><td>What would be a kinder, more realistic expectation?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Thought record</h3>
+  <p>Fill this in after a difficult moment. Nothing you type is saved or sent anywhere; use Download to keep a copy.</p>
+  <form class="card tr" id="trForm" onsubmit="return false">
+    <div class="row">
+      <div>
+        <label for="tr1">1. Situation: where, when, who?</label>
+        <textarea id="tr1"></textarea>
+      </div>
+      <div>
+        <label for="tr2">2. Emotion and how strong (0–100)</label>
+        <textarea id="tr2" placeholder="e.g. anxious"></textarea>
+        <input type="range" id="trA" min="0" max="100" value="70" aria-label="Emotion strength before"> <span class="small">Strength: <span id="trAv">70</span></span>
+      </div>
+    </div>
+    <label for="tr3">3. Automatic thought: what went through my mind?</label>
+    <textarea id="tr3"></textarea>
+    <div class="row">
+      <div>
+        <label for="tr4">4. Evidence that supports the thought</label>
+        <textarea id="tr4"></textarea>
+      </div>
+      <div>
+        <label for="tr5">5. Evidence that does not support it</label>
+        <textarea id="tr5"></textarea>
+      </div>
+    </div>
+    <label for="tr6">6. A more balanced thought</label>
+    <textarea id="tr6"></textarea>
+    <label for="trB">7. Re-rate the emotion now</label>
+    <input type="range" id="trB" min="0" max="100" value="70"> <span class="small">Strength: <span id="trBv">70</span></span>
+    <div class="controls">
+      <button class="btn btn-start" id="trSave" type="button">Download as text</button>
+      <button class="btn btn-ghost" id="trPrint" type="button">Print</button>
+      <button class="btn btn-ghost" id="trClear" type="button">Clear</button>
+    </div>
+  </form>
+</div>
+</section>
+
+<!-- ================= LADDER ================= -->
+<section id="ladder">
+<div class="wrap">
+  <div class="kicker">What the guidelines say</div>
+  <h2>Treatment steps</h2>
+  <p>UK care follows a "stepped" model: start with the least intensive treatment likely to work, and step up if it doesn't. Your preference matters. NICE's 2022 depression guideline tells clinicians to discuss options and support people's choice.</p>
+
+  <div class="grid g2">
+    <div>
+      <h3>Depression (NICE NG222)</h3>
+      <div class="ladder">
+        <div class="step"><div class="n">1</div><div><h4>Less severe depression</h4>Guided self-help is the first option for most people, followed by group CBT, group behavioural activation, individual CBT or behavioural activation, group exercise, mindfulness or meditation groups, interpersonal therapy, counselling or short psychodynamic therapy. Antidepressants are not offered routinely as first-line unless that is your preference.</div></div>
+        <div class="step"><div class="n">2</div><div><h4>More severe depression</h4>A combination of individual CBT and an antidepressant is the most effective first option. Behavioural activation, psychotherapy or an antidepressant alone are alternatives.</div></div>
+        <div class="step"><div class="n">3</div><div><h4>Not improving</h4>Review the diagnosis and adherence, change or combine treatments, or refer to specialist mental health services.</div></div>
+        <div class="step"><div class="n">4</div><div><h4>Treatment-resistant</h4>Specialist options: medicine augmentation (for example lithium or an antipsychotic), ECT, rTMS, and in some countries esketamine. See <a href="#new">newer treatments</a>.</div></div>
+      </div>
+      <p class="small">NICE uses a PHQ-9 score of 16 as a rough line between "less severe" and "more severe".</p>
+    </div>
+    <div>
+      <h3>Generalised anxiety and panic (NICE CG113)</h3>
+      <div class="ladder">
+        <div class="step"><div class="n">1</div><div><h4>Recognise and explain</h4>Information about anxiety and active monitoring.</div></div>
+        <div class="step"><div class="n">2</div><div><h4>Low-intensity help</h4>Guided or self-guided CBT self-help (books or online) and psychoeducational groups.</div></div>
+        <div class="step"><div class="n">3</div><div><h4>High-intensity therapy or medicine</h4>Individual CBT or applied relaxation, or an SSRI. Sertraline is suggested first for generalised anxiety. For panic disorder, CBT is the main treatment.</div></div>
+        <div class="step"><div class="n">4</div><div><h4>Complex or severe</h4>Specialist assessment and combined treatment.</div></div>
+      </div>
+      <p class="small">NICE advises against benzodiazepines for panic disorder and, for generalised anxiety, only as a short-term measure in a crisis.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= LIFESTYLE ================= -->
+<section id="lifestyle">
+<div class="wrap">
+  <div class="kicker">Foundations</div>
+  <h2>Daily habits with real evidence</h2>
+  <div class="grid g3">
+    <div class="card">
+      <h3>Exercise</h3>
+      <p class="small"><span class="tag t-strong">Strong</span> BMJ 2024, 218 trials</p>
+      <p>A network meta-analysis of 218 trials and over 14,000 people found walking or jogging, yoga and strength training were the most effective forms of exercise for depression, with bigger effects at higher intensity. Strength training and yoga were the easiest to stick with. The authors suggest exercise could sit alongside therapy and medicines as a core treatment.</p>
+    </div>
+    <div class="card">
+      <h3>Sleep</h3>
+      <p class="small"><span class="tag t-strong">Strong</span> CBT for insomnia</p>
+      <p>Poor sleep and low mood feed each other. CBT for insomnia (fixed wake time, bed only for sleep, getting up if awake for long) is the recommended first treatment for chronic insomnia and often lifts mood too. Sleepio is available free on the NHS in Scotland.</p>
+    </div>
+    <div class="card">
+      <h3>Light and vitamin D</h3>
+      <p class="small"><span class="tag t-mod">Moderate</span></p>
+      <p>Get daylight early in the day, especially in northern winters. Bright-light therapy can help seasonal depression. UK advice is that everyone should consider a daily vitamin D supplement (10 micrograms) in autumn and winter.</p>
+    </div>
+    <div class="card">
+      <h3>Alcohol and caffeine</h3>
+      <p class="small"><span class="tag t-strong">Clear link</span></p>
+      <p>Alcohol eases anxiety for an hour or two and then worsens it, along with sleep and mood. High caffeine intake can bring on panic-like symptoms. Cutting down is one of the simplest changes to try.</p>
+    </div>
+    <div class="card">
+      <h3>People and purpose</h3>
+      <p class="small"><span class="tag t-mod">Moderate</span></p>
+      <p>Isolation deepens depression. Regular contact, volunteering, groups and "social prescribing" through your GP practice (link workers who connect you to local activities) are worth asking about.</p>
+    </div>
+    <div class="card">
+      <h3>Mindfulness-based CBT</h3>
+      <p class="small"><span class="tag t-strong">Strong</span> for preventing relapse</p>
+      <p>An 8-week group course that combines meditation with CBT. NICE recommends it to help prevent relapse in people who have recovered from depression but are at risk of it returning.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= NEW ================= -->
+<section id="new">
+<div class="wrap">
+  <div class="kicker">Neuroscience and new options</div>
+  <h2>Newer and specialist treatments</h2>
+  <p>Most of these are for depression that has not responded to two or more standard treatments ("treatment-resistant depression", which affects about a third of people with major depression). They are given or supervised by specialists. A 2026 Mayo Clinic Depression Center expert panel reached strong consensus on three preferred next steps: adding a second-generation antipsychotic, TMS, and ketamine or esketamine.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Treatment</th><th>What it is</th><th>Status and evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>rTMS</strong><br><span class="tag t-strong">Established</span></td><td>Magnetic pulses over the left prefrontal cortex, daily sessions for 4–6 weeks while awake, no anaesthetic.</td><td>Covered in NICE NG222 and offered in some NHS and many private clinics. Reported to help roughly 40–60% of patients, with few side effects.</td></tr>
+        <tr><td><strong>Accelerated TMS</strong> (e.g. SAINT/SNT)<br><span class="tag t-mod">Newer</span></td><td>Many short theta-burst sessions a day over 5 days, targeted using brain MRI.</td><td>FDA-cleared in the US for treatment-resistant depression; limited availability in the UK.</td></tr>
+        <tr><td><strong>Home tDCS</strong> (Flow headset)<br><span class="tag t-mod">Mixed evidence</span></td><td>A weak electrical current to the prefrontal cortex through a headset, used at home with an app.</td><td>On 8 December 2025 the FDA approved Flow's device for moderate to severe depression in adults who are not treatment-refractory, the first home brain-stimulation device for depression. It is already sold in the UK and Europe. Evidence is mixed: a 2023 Lancet trial of tDCS added to medicines found no benefit over sham.</td></tr>
+        <tr><td><strong>Esketamine</strong> (Spravato) and ketamine<br><span class="tag t-mod">Specialist</span></td><td>Nasal spray (or IV ketamine) acting on the glutamate system, given under supervision in a clinic.</td><td>FDA-approved for treatment-resistant depression since 2019, and as a stand-alone treatment since January 2025. Works within hours to days. Not routinely available on the NHS.</td></tr>
+        <tr><td><strong>ECT</strong><br><span class="tag t-strong">Established</span></td><td>A brief, controlled seizure under general anaesthetic, usually twice a week.</td><td>The most effective option for severe, life-threatening or psychotic depression. Memory side effects are the main drawback. Underused partly because of stigma.</td></tr>
+        <tr><td><strong>Psilocybin therapy</strong> (COMP360)<br><span class="tag t-warn">Not approved</span></td><td>A single or repeated dose of synthetic psilocybin given with psychological support in a clinic.</td><td>Two phase 3 trials (about 260 and 580 patients) met their main goal in treatment-resistant depression, with rapid onset and effects lasting months. The company is seeking FDA approval. Only available in trials; do not self-medicate with mushrooms.</td></tr>
+        <tr><td><strong>Digital CBT</strong><br><span class="tag t-strong">Recommended</span></td><td>App or web CBT programmes with check-ins from a clinician.</td><td>NICE has conditionally recommended several guided digital therapies for depression and anxiety disorders, delivered through NHS Talking Therapies in England. In Scotland, NHS boards offer online CBT programmes; ask your GP.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <details>
+    <summary>How do these work in the brain?</summary>
+    <p>Imaging studies point to under-activity in the dorsolateral prefrontal cortex and over-activity in emotion circuits (amygdala, subgenual cingulate) in depression. TMS and tDCS aim to boost the prefrontal side of that network. Ketamine and psilocybin appear to trigger a burst of neuroplasticity, the growth of new connections between neurons, which may open a window in which therapy and new habits take hold more easily. Slow breathing works from the other end, through the vagus nerve, nudging the body's alarm system down.</p>
+  </details>
+</div>
+</section>
+
+<!-- ================= SUPPLEMENTS ================= -->
+<section id="supplements">
+<div class="wrap">
+  <div class="kicker">Over the counter</div>
+  <h2>Supplements: what the evidence says</h2>
+  <p class="note"><strong>Check with a pharmacist first.</strong> "Natural" does not mean safe. Some supplements interact with prescribed medicines, including antidepressants, the contraceptive pill and blood thinners. Product quality varies, so results from one brand may not apply to another.</p>
+  <p>A 2025 review that mapped every trial of over-the-counter products for depression found the most research on omega-3s, St John's wort, probiotics, saffron and vitamin D. Lavender, zinc, chamomile and others looked promising but need more data.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Supplement</th><th>Evidence</th><th>Key cautions</th></tr></thead>
+      <tbody>
+        <tr><td><strong>St John's wort</strong></td><td><span class="tag t-mod">Mixed</span> May help mild to moderate depression in some people, but the evidence is far from definitive.</td><td><span class="tag t-warn">Serious interactions</span> Can make the contraceptive pill, blood thinners, HIV and transplant medicines fail. Never combine with antidepressants. Can trigger mania in bipolar disorder. UK guidance advises doctors not to recommend it.</td></tr>
+        <tr><td><strong>Saffron</strong></td><td><span class="tag t-mod">Promising</span> Around 18 trials, among the stronger results.</td><td>Safe in food amounts; higher doses can cause bleeding problems and interact with medicines.</td></tr>
+        <tr><td><strong>Lavender oil capsules</strong> (Silexan)</td><td><span class="tag t-mod">Promising</span> Meta-analyses show reduced anxiety in generalised anxiety and "subthreshold" anxiety, with good tolerability.</td><td>Results apply only to that standardised extract, not to other lavender products or aromatherapy.</td></tr>
+        <tr><td><strong>Omega-3</strong> (EPA-rich fish oil)</td><td><span class="tag t-weak">Uncertain</span> Of 39 trials, most found no clear benefit over placebo; may help slightly alongside standard treatment.</td><td>Can increase bleeding risk with blood thinners.</td></tr>
+        <tr><td><strong>Vitamin D</strong></td><td><span class="tag t-weak">Uncertain</span> Most useful if you are low, which is common in UK winters.</td><td>Stick to recommended amounts; very high doses are harmful.</td></tr>
+        <tr><td><strong>Probiotics</strong></td><td><span class="tag t-weak">Early</span> About 18 trials; the gut–brain link is an active research area.</td><td>Generally well tolerated.</td></tr>
+        <tr><td><strong>Creatine</strong></td><td><span class="tag t-weak">Early</span> A 2024 trial of 100 people found creatine plus CBT reduced depression more than placebo plus CBT over 8 weeks. The authors call it hypothesis-generating.</td><td>Avoid with kidney disease. Ask a doctor first if you have bipolar disorder.</td></tr>
+        <tr><td><strong>Magnesium, melatonin, L-theanine</strong></td><td><span class="tag t-weak">Mixed or limited</span></td><td>Melatonin can help sleep timing but is not an antidepressant.</td></tr>
+        <tr><td><strong>Kava</strong></td><td><span class="tag t-warn">Avoid</span></td><td>Linked to liver damage.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ================= MEDICINES ================= -->
+<section id="medicines">
+<div class="wrap">
+  <div class="kicker">Prescribed treatment</div>
+  <h2>Medicines: the basics</h2>
+  <p>Medicines are prescribed after a conversation with a doctor about your symptoms, history, other medicines and preferences. This section is to help you have that conversation, not to choose a medicine yourself.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Group</th><th>Examples</th><th>Used for</th><th>Worth knowing</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SSRIs</strong></td><td>sertraline, citalopram, escitalopram, fluoxetine</td><td>Depression, generalised anxiety, panic, social anxiety, OCD</td><td>Usual first choice. Anxiety, nausea or poor sleep can briefly increase in the first 1–2 weeks.</td></tr>
+        <tr><td><strong>SNRIs</strong></td><td>venlafaxine, duloxetine</td><td>Depression, generalised anxiety</td><td>Often tried if an SSRI has not helped. Can raise blood pressure. Withdrawal can be marked.</td></tr>
+        <tr><td><strong>Other antidepressants</strong></td><td>mirtazapine, vortioxetine, agomelatine, bupropion (US)</td><td>Depression</td><td>Different side-effect profiles; for example mirtazapine helps sleep but can increase appetite.</td></tr>
+        <tr><td><strong>Pregabalin</strong></td><td></td><td>Generalised anxiety</td><td>An option if SSRIs and SNRIs are unsuitable. Risk of dependence; a controlled drug in the UK.</td></tr>
+        <tr><td><strong>Benzodiazepines</strong></td><td>diazepam, lorazepam</td><td>Short-term crisis only</td><td>Work fast but cause tolerance and dependence. Not recommended for ongoing anxiety or panic.</td></tr>
+        <tr><td><strong>Propranolol</strong></td><td></td><td>Physical symptoms (shaking, pounding heart), e.g. before a talk</td><td>Does not treat the worry itself. Dangerous in overdose and unsuitable with asthma.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>Give it time</h3><p>Antidepressants usually take 4–8 weeks to reach full effect, and side effects often ease over the same period. It can take more than one try to find the right one.</p></div>
+    <div class="card"><h3>Don't stop suddenly</h3><p>Stopping abruptly can cause withdrawal: dizziness, "brain zaps", anxiety, low mood. Plan a gradual taper with your doctor and pharmacist. Most people take an antidepressant for 6–12 months, sometimes longer.</p></div>
+    <div class="card"><h3>Extra checks under 25</h3><p>Young adults should be reviewed closely in the first weeks of starting an antidepressant. Tell someone straight away if you feel more agitated or have thoughts of self-harm.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ================= HELP ================= -->
+<section id="help">
+<div class="wrap">
+  <div class="kicker">You don't have to do this alone</div>
+  <h2>Get help</h2>
+  <div class="grid g2">
+    <div>
+      <h3>Urgent</h3>
+      <div class="tablewrap help">
+        <table><tbody>
+          <tr><td>999 / A&amp;E</td><td>If a life is at risk or you can't keep yourself safe.</td></tr>
+          <tr><td><a href="tel:116123">116 123</a></td><td>Samaritans, UK and Ireland. Free, 24 hours.</td></tr>
+          <tr><td>Text 85258</td><td>Shout text service, UK, 24 hours.</td></tr>
+          <tr><td><a href="tel:111">111</a></td><td>Scotland: NHS 24 mental health hub, day or night. England: choose option 2 for mental health.</td></tr>
+          <tr><td><a href="tel:988">988</a></td><td>US Suicide &amp; Crisis Lifeline, call or text.</td></tr>
+          <tr><td>Elsewhere</td><td><a href="https://findahelpline.com">findahelpline.com</a> lists free lines worldwide.</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div>
+      <h3>Talking support and therapy</h3>
+      <div class="tablewrap help">
+        <table><tbody>
+          <tr><td><a href="tel:0800838587">0800 83 85 87</a></td><td><a href="https://breathingspace.scot">Breathing Space</a> (Scotland, 16+): listening service for low mood and anxiety. Weekday evenings, 24 hours at weekends.</td></tr>
+          <tr><td><a href="tel:08003289655">0800 328 9655</a></td><td><a href="https://www.nhs24.scot/how-we-can-help/living-life">Living Life</a> (Scotland, 16+): free phone CBT from NHS 24. Refer yourself on weekdays.</td></tr>
+          <tr><td>England</td><td><a href="https://www.nhs.uk/talk">NHS Talking Therapies</a>: refer yourself online, no GP needed.</td></tr>
+          <tr><td>Your GP</td><td>For assessment, medicines, local therapy and online CBT.</td></tr>
+          <tr><td>Self-help</td><td><a href="https://www.nhsinform.scot/mind-to-mind">NHS inform</a>, <a href="https://www.nhs.uk/every-mind-matters/">Every Mind Matters</a>, <a href="https://www.mayoclinic.org/diseases-conditions/depression/symptoms-causes/syc-20356007">Mayo Clinic</a>, <a href="https://www.nimh.nih.gov/health/topics">NIMH</a>.</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section id="sources">
+<div class="wrap">
+  <div class="kicker">Evidence</div>
+  <h2>Sources</h2>
+  <ol class="refs">
+    <li>Balban MY et al. (2023). Brief structured respiration practices enhance mood and reduce physiological arousal. <em>Cell Reports Medicine</em> 4:100895. <a href="https://doi.org/10.1016/j.xcrm.2022.100895">doi:10.1016/j.xcrm.2022.100895</a></li>
+    <li>Goessl VC, Curtiss JE, Hofmann SG (2017). The effect of heart rate variability biofeedback training on stress and anxiety: a meta-analysis. <em>Psychological Medicine</em> 47:2578–86. <a href="https://doi.org/10.1017/S0033291717001003">doi:10.1017/S0033291717001003</a></li>
+    <li>NICE (2022, updated 2024). Depression in adults: treatment and management (NG222). <a href="https://www.nice.org.uk/guidance/ng222">nice.org.uk/guidance/ng222</a></li>
+    <li>NICE (2011, updated 2020). Generalised anxiety disorder and panic disorder in adults: management (CG113). <a href="https://www.nice.org.uk/guidance/cg113">nice.org.uk/guidance/cg113</a></li>
+    <li>NICE (2024). Digitally enabled therapies for adults with anxiety disorders (HTG676) and depression: early value assessments. <a href="https://www.nice.org.uk/guidance/htg676">nice.org.uk/guidance/htg676</a></li>
+    <li>NHS. Talking therapies and NHS Talking Therapies self-referral. <a href="https://www.nhs.uk/mental-health/talking-therapies-medicine-treatments/talking-therapies-and-counselling/nhs-talking-therapies/">nhs.uk</a></li>
+    <li>NHS inform / NHS 24. Mental health services at NHS 24 (Living Life, Breathing Space). <a href="https://www.nhsinform.scot/illnesses-and-conditions/mental-health/mental-health-support/mental-health-services-at-nhs-24">nhsinform.scot</a></li>
+    <li>Noetel M et al. (2024). Effect of exercise for depression: systematic review and network meta-analysis of randomised controlled trials. <em>BMJ</em> 384:e075847. <a href="https://doi.org/10.1136/bmj-2023-075847">doi:10.1136/bmj-2023-075847</a></li>
+    <li>Marques MG et al. (2026). Next-step treatment options for treatment-resistant depression: insights from the Mayo Clinic Depression Center panel. <em>J Clin Psychiatry</em> 87(1):25cs16066. <a href="https://pubmed.ncbi.nlm.nih.gov/41603781/">PubMed</a></li>
+    <li>Mayo Clinic. Treatment-resistant depression. <a href="https://www.mayoclinic.org/diseases-conditions/depression/in-depth/treatment-resistant-depression/art-20044324">mayoclinic.org</a></li>
+    <li>Mayo Clinic. Natural remedies for depression: are they effective? <a href="https://www.mayoclinic.org/health/natural-remedies-for-depression/AN02087">mayoclinic.org</a></li>
+    <li>Bikson M, Brunoni AR, George MS (2026). US FDA approves home-delivered tDCS for treating depression. <em>Brain Stimulation</em> 19(1):103021. <a href="https://doi.org/10.1016/j.brs.2025.103021">doi:10.1016/j.brs.2025.103021</a></li>
+    <li>Johnson &amp; Johnson (21 January 2025). Spravato (esketamine) approved in the US as the first and only monotherapy for adults with treatment-resistant depression. <a href="https://www.jnj.com/media-center/press-releases/spravato-esketamine-approved-in-the-u-s-as-the-first-and-only-monotherapy-for-adults-with-treatment-resistant-depression">jnj.com</a></li>
+    <li>Compass Pathways COMP360 phase 3 programme (COMP005, COMP006), reported in <em>Psychiatric Times</em>, February and July 2026. <a href="https://www.psychiatrictimes.com/view/new-6-month-data-from-second-phase-3-trial-confirms-rapid-effect-of-comp360-for-trd">psychiatrictimes.com</a></li>
+    <li>NCCIH (NIH). Depression and complementary health approaches. <a href="https://www.nccih.nih.gov/health/providers/digest/depression-and-complementary-health-approaches">nccih.nih.gov</a></li>
+    <li>Frost R et al. (2025). Evidence map of over-the-counter herbal products and dietary supplements for depression. <em>Frontiers in Pharmacology</em>; summary: <a href="https://www.frontiersin.org/news/2025/07/15/mental-health-evidence-herbal-products-dietary-supplements-depression-rachael-frost">frontiersin.org</a></li>
+    <li>Dold M et al. (2023). Efficacy of Silexan in patients with anxiety disorders: a meta-analysis of randomized, placebo-controlled trials. <em>Eur Arch Psychiatry Clin Neurosci</em> 273:1615–28. <a href="https://doi.org/10.1007/s00406-022-01547-w">doi:10.1007/s00406-022-01547-w</a></li>
+    <li>Sherpa NN et al. (2025). Efficacy and safety profile of oral creatine monohydrate in add-on to cognitive-behavioural therapy in depression. <em>Eur Neuropsychopharmacol</em> 90:28–35. <a href="https://doi.org/10.1016/j.euroneuro.2024.10.004">doi:10.1016/j.euroneuro.2024.10.004</a></li>
+    <li>Royal College of Psychiatrists. Stopping antidepressants. <a href="https://www.rcpsych.ac.uk/mental-health/treatments-and-wellbeing/stopping-antidepressants">rcpsych.ac.uk</a></li>
+  </ol>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Compiled by <a href="https://skodoli.github.io/">Sandeep Kodoli</a> as a free public resource. I am a research scientist, not a clinician; this page summarises published guidance and studies and is not medical advice. Last reviewed November 2026. Corrections welcome.</p>
+    <p>No cookies, tracking or data collection. Text you type in the thought record stays in your browser.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- Stack tables on phones ---------- */
+  document.querySelectorAll('.tablewrap').forEach(function(w){
+    var hs=[].map.call(w.querySelectorAll('thead th'),function(th){return th.textContent});
+    if(!hs.length) return; w.classList.add('stack');
+    w.querySelectorAll('tbody tr').forEach(function(tr){[].forEach.call(tr.children,function(td,i){td.setAttribute('data-label',hs[i]||'')})});
+  });
+  /* ---------- Breathing timer ---------- */
+  var PATTERNS = {
+    sigh:{shape:'circle', how:'<p><strong>Cyclic sigh.</strong> Breathe in through your nose until your lungs feel almost full, then take a short second sip of air to top up. Let it all out slowly through your mouth. Repeat for about 5 minutes.</p>',
+      phases:[{l:'Breathe in',s:'through your nose',t:2.5,from:.5,to:.88},{l:'Sip more',s:'short top-up breath',t:1,from:.88,to:1},{l:'Breathe out',s:'long and slow, through your mouth',t:6,from:1,to:.5}]},
+    box:{shape:'square', how:'<p><strong>Box breathing.</strong> Follow the dot round the square: in for 4, hold for 4, out for 4, hold for 4. Breathe through your nose if you can.</p>',
+      phases:[{l:'Breathe in',s:'',t:4,edge:0},{l:'Hold',s:'',t:4,edge:1},{l:'Breathe out',s:'',t:4,edge:2},{l:'Hold',s:'',t:4,edge:3}]},
+    slow:{shape:'circle', how:'<p><strong>Slow breathing 4-6.</strong> In through your nose for 4 as the circle grows, out for 6 as it shrinks. Let your belly rise rather than your shoulders. About six breaths a minute.</p>',
+      phases:[{l:'Breathe in',s:'belly rises',t:4,from:.5,to:1},{l:'Breathe out',s:'slow and soft',t:6,from:1,to:.5}]}
+  };
+  var CORNERS=[[55,245],[55,55],[245,55],[245,245]];
+  var cur='sigh', running=false, raf=null, t0=0, phaseIdx=-1, cycles=0, lenSec=300, ac=null;
+  var $=function(id){return document.getElementById(id)};
+  var circle=$('bCircle'), square=$('bSquare'), dot=$('bDot');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function cycleLen(p){return p.phases.reduce(function(a,b){return a+b.t},0)}
+  function ease(x){return .5-.5*Math.cos(Math.PI*x)}
+  function setPattern(k){
+    if(running) stop(true);
+    cur=k;
+    document.querySelectorAll('.pill[data-pattern]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.pattern===k)});
+    var p=PATTERNS[k];
+    $('bHow').innerHTML=p.how;
+    var sq=p.shape==='square';
+    circle.style.display=sq?'none':''; square.style.display=sq?'':'none'; dot.style.display=sq?'':'none';
+    circle.setAttribute('r',64); dot.setAttribute('cx',55); dot.setAttribute('cy',245);
+    $('bLabel').textContent='Ready'; $('bCount').innerHTML='&nbsp;'; $('bSub').textContent='Press Start';
+  }
+  function tone(up){
+    if(!$('bSound').checked) return;
+    try{
+      ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+      var o=ac.createOscillator(), g=ac.createGain();
+      o.type='sine'; o.frequency.value=up?440:330;
+      g.gain.setValueAtTime(0,ac.currentTime); g.gain.linearRampToValueAtTime(.08,ac.currentTime+.05); g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.9);
+      o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime+1);
+    }catch(e){}
+  }
+  function buzz(){ if($('bVibe').checked && navigator.vibrate){ try{navigator.vibrate(60)}catch(e){} } }
+  function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+
+  function frame(now){
+    var p=PATTERNS[cur], el=(now-t0)/1000, cl=cycleLen(p);
+    var c=Math.floor(el/cl), inC=el-c*cl;
+    if(lenSec>0 && c*cl>=lenSec){ finish(); return; }
+    var acc=0,i=0; for(;i<p.phases.length;i++){ if(inC<acc+p.phases[i].t) break; acc+=p.phases[i].t; }
+    if(i>=p.phases.length) i=p.phases.length-1;
+    var ph=p.phases[i], x=(inC-acc)/ph.t;
+    if(i!==phaseIdx){ phaseIdx=i; $('bLabel').textContent=ph.l; $('bSub').textContent=ph.s||' '; tone(/in|Sip/.test(ph.l)); buzz(); }
+    if(c!==cycles){ cycles=c; }
+    $('bCount').textContent=Math.ceil(ph.t-(inC-acc));
+    if(p.shape==='circle'){
+      var sc=ph.from+(ph.to-ph.from)*(reduce?(x<.5?0:1):ease(x));
+      circle.setAttribute('r',(128*sc).toFixed(1));
+    }else{
+      var a=CORNERS[ph.edge], b=CORNERS[(ph.edge+1)%4], e=reduce?1:x;
+      dot.setAttribute('cx',a[0]+(b[0]-a[0])*e); dot.setAttribute('cy',a[1]+(b[1]-a[1])*e);
+    }
+    var left=lenSec>0?Math.max(0,Math.ceil(lenSec/cl)*cl-el):null;
+    $('bStats').textContent='Breaths: '+(c+1)+'   ·   Elapsed '+fmt(el)+(left!==null?'   ·   Left '+fmt(left):'');
+    raf=requestAnimationFrame(frame);
+  }
+  function start(){
+    if(running) return;
+    if($('bSound').checked){ try{ac=ac||new (window.AudioContext||window.webkitAudioContext)(); ac.resume&&ac.resume();}catch(e){} }
+    running=true; lenSec=+$('bLen').value; phaseIdx=-1; cycles=0; t0=performance.now();
+    $('bStart').disabled=true; $('bStop').disabled=false;
+    raf=requestAnimationFrame(frame);
+  }
+  function stop(silent){
+    running=false; if(raf) cancelAnimationFrame(raf); raf=null;
+    $('bStart').disabled=false; $('bStop').disabled=true;
+    if(!silent){ $('bLabel').textContent='Stopped'; $('bCount').innerHTML='&nbsp;'; $('bSub').textContent='Breathe normally. Press Start to go again.'; }
+  }
+  function finish(){
+    stop(true);
+    $('bLabel').textContent='Well done'; $('bCount').innerHTML='&nbsp;';
+    $('bSub').textContent='Notice how your body feels now.';
+    tone(false); buzz();
+  }
+  document.querySelectorAll('.pill[data-pattern]').forEach(function(b){b.addEventListener('click',function(){setPattern(b.dataset.pattern)})});
+  $('bStart').addEventListener('click',start);
+  $('bStop').addEventListener('click',function(){stop(false)});
+  $('sosBtn').addEventListener('click',function(){
+    setPattern('sigh'); $('bLen').value='180';
+    document.getElementById('calm').scrollIntoView({behavior:reduce?'auto':'smooth'});
+    setTimeout(start,reduce?0:600);
+  });
+  setPattern('sigh');
+
+  /* ---------- Grounding 5-4-3-2-1 ---------- */
+  var G=[
+    [5,'things you can <strong>see</strong>. Name them quietly: colours, shapes, light.'],
+    [4,'things you can <strong>feel</strong>: your feet on the floor, the chair, fabric, air on your skin.'],
+    [3,'things you can <strong>hear</strong>: near and far, loud and quiet.'],
+    [2,'things you can <strong>smell</strong>, or two smells you like.'],
+    [1,'thing you can <strong>taste</strong>, or one kind thing to say to yourself.'],
+    ['✓','Take one slow breath out. You came back to the present. Start again any time.']
+  ], gi=0;
+  function gRender(){
+    $('gNum').textContent=G[gi][0]; $('gText').innerHTML=G[gi][1];
+    $('gDots').innerHTML=G.map(function(_,i){return '<span class="'+(i<=gi?'on':'')+'"></span>'}).join('');
+    $('gBack').disabled=gi===0; $('gNext').textContent=gi===G.length-1?'Restart':'Next';
+  }
+  $('gNext').addEventListener('click',function(){gi=gi===G.length-1?0:gi+1;gRender()});
+  $('gBack').addEventListener('click',function(){if(gi>0){gi--;gRender()}});
+  gRender();
+
+  /* ---------- Thought record ---------- */
+  ['A','B'].forEach(function(k){var r=$('tr'+k);r.addEventListener('input',function(){$('tr'+k+'v').textContent=r.value})});
+  $('trSave').addEventListener('click',function(){
+    var q=['Situation','Emotion','Automatic thought','Evidence for','Evidence against','Balanced thought'];
+    var out='THOUGHT RECORD — '+new Date().toLocaleString('en-GB')+'\n\n';
+    for(var i=1;i<=6;i++){ out+=q[i-1].toUpperCase()+':\n'+($('tr'+i).value||'-')+'\n'; if(i===2) out+='Strength before: '+$('trA').value+'/100\n'; out+='\n'; }
+    out+='Strength after: '+$('trB').value+'/100\n';
+    var blob=new Blob([out],{type:'text/plain'}), a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='thought-record-'+new Date().toISOString().slice(0,10)+'.txt';
+    document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+  });
+  $('trPrint').addEventListener('click',function(){window.print()});
+  $('trClear').addEventListener('click',function(){ $('trForm').reset(); $('trAv').textContent=70; $('trBv').textContent=70; });
+})();
+</script>
+</body>
+</html>
