@@ -121,6 +121,15 @@ tr:last-child td{border-bottom:0}
   .stack td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 }
 
+/* Brain explorer promo */
+.brainpromo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.brainpromo ul{margin:.4rem 0 1rem;padding-left:1.2rem}
+.brainpromo ul li{margin:.25rem 0}
+.brainpromo .art{background:radial-gradient(ellipse at 40% 35%,#1d3446 0%,#0e1822 75%);border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.brainpromo .art svg{width:78%;height:auto}
+a.btn-start{display:inline-block;text-decoration:none}
+@media (max-width:700px){.brainpromo{grid-template-columns:1fr}.brainpromo .art{order:-1}}
+
 /* Ladder */
 .ladder{display:grid;gap:10px}
 .step{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
@@ -158,6 +167,7 @@ details summary{cursor:pointer;font-weight:600}
       <a href="#cbt">CBT tools</a>
       <a href="#ladder">Treatment steps</a>
       <a href="#lifestyle">Daily habits</a>
+      <a href="#brain">Brain explorer</a>
       <a href="#new">Newer treatments</a>
       <a href="#supplements">Supplements</a>
       <a href="#medicines">Medicines</a>
@@ -551,6 +561,40 @@ details summary{cursor:pointer;font-weight:600}
 </div>
 </section>
 
+<!-- ================= BRAIN EXPLORER ================= -->
+<section id="brain">
+<div class="wrap">
+  <div class="kicker">Interactive</div>
+  <h2>Explore the brain in 3D</h2>
+  <div class="brainpromo">
+    <div>
+      <p>Rotate a 3D model of the brain and tap any part to see what it does. It shows where the amygdala, prefrontal cortex, insula and brainstem sit, and how they connect to the anxiety and calming tools on this page.</p>
+      <ul class="tight">
+        <li><strong>See inside</strong> and <strong>pull apart</strong> to reveal the deep structures</li>
+        <li><strong>Functions:</strong> light up the parts behind memory, emotion and stress, breathing or sleep</li>
+        <li><strong>Guided tours:</strong> "When anxiety rises" and "How calming down works"</li>
+        <li><strong>Quiz:</strong> find 10 parts on the model</li>
+      </ul>
+      <a class="btn btn-start" href="brain.html">Open the Brain Explorer</a>
+      <p class="small" style="margin-top:10px">A simplified teaching model; shapes and positions are approximate. Works best on a laptop or tablet.</p>
+    </div>
+    <a class="art" href="brain.html" aria-hidden="true" tabindex="-1">
+      <svg viewBox="0 0 200 150">
+        <path d="M40 92c-14-4-20-20-12-34 4-16 20-24 34-22 8-14 30-18 44-10 14-6 34 0 40 14 16 2 26 18 20 34-2 14-16 22-30 20-6 10-20 14-32 10-10 6-24 4-32-4-12 2-26-2-32-8z" fill="#7aa7dc"/>
+        <path d="M150 74c10 2 14 14 8 22-4 8-14 10-22 6 6-8 10-18 14-28z" fill="#a99be6"/>
+        <path d="M56 98c10 6 34 10 54 4 6 8 0 16-12 18-18 2-36-6-42-22z" fill="#e7a8c6"/>
+        <path d="M30 60c6-14 20-22 32-22 0 16-8 32-22 40-8-4-12-10-10-18z" fill="#79c8c4"/>
+        <path d="M86 32c8-6 18-8 26-4-4 20-8 40-6 64-8 2-14 0-20-2-2-20-2-40 0-58z" fill="#e79a7c"/>
+        <path d="M62 38c8-6 16-8 24-6-2 20-2 40 0 58-10 2-20 2-28-2 4-18 6-34 4-50z" fill="#8fd0a0"/>
+        <ellipse cx="62" cy="118" rx="26" ry="12" fill="#cfa47f"/>
+        <rect x="88" y="112" width="12" height="28" rx="6" fill="#86b7dd"/>
+        <circle cx="122" cy="96" r="7" fill="#ef5b6b"/>
+      </svg>
+    </a>
+  </div>
+</div>
+</section>
+
 <!-- ================= NEW ================= -->
 <section id="new">
 <div class="wrap">
@@ -574,6 +618,7 @@ details summary{cursor:pointer;font-weight:600}
   <details>
     <summary>How do these work in the brain?</summary>
     <p>Imaging studies point to under-activity in the dorsolateral prefrontal cortex and over-activity in emotion circuits (amygdala, subgenual cingulate) in depression. TMS and tDCS aim to boost the prefrontal side of that network. Ketamine and psilocybin appear to trigger a burst of neuroplasticity, the growth of new connections between neurons, which may open a window in which therapy and new habits take hold more easily. Slow breathing works from the other end, through the vagus nerve, nudging the body's alarm system down.</p>
+    <p>See where these regions are in the <a href="brain.html">3D Brain Explorer</a>.</p>
   </details>
 </div>
 </section>
@@ -698,7 +743,7 @@ details summary{cursor:pointer;font-weight:600}
 
 <footer>
   <div class="wrap">
-    <p>Compiled by <a href="https://skodoli.github.io/">Sandeep Kodoli</a> as a free public resource. I am a researcher  in atmopsheric physics with some interest in mental health and neuroscience, this page summarises published guidance and studies and is not medical advice. Last reviewed November 2026. Corrections welcome.</p>
+    <p>Compiled by <a href="https://skodoli.github.io/">Sandeep Kodoli</a> as a free public resource. I am a researcher in atmospheric physics with an interest in mental health and neuroscience. This page summarises published guidance and studies and is not medical advice. Last reviewed November 2026. Corrections welcome.</p>
     <p>No cookies, tracking or data collection. Text you type in the thought record stays in your browser.</p>
   </div>
 </footer>
